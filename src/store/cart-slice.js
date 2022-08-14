@@ -15,6 +15,7 @@ const addToCart = (state, action) => {
   } else {
     state.items.push({
       id: newItem.id,
+      title: newItem.title,
       price: newItem.price,
       quantity: 1,
       totalPrice: newItem.price,
