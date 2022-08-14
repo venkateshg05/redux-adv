@@ -12,7 +12,6 @@ const ProductItem = (props) => {
       id,
       title,
       price,
-      description,
     };
     dispatch(cartActions.addToCart({ newItem: newItem }));
   };
