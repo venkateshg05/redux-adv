@@ -6,6 +6,7 @@ const initialCartState = {
 };
 
 const addToCart = (state, action) => {
+  state.totalQuantity++;
   const newItem = action.payload["newItem"];
   const exisistingItem = state.items.find((item) => item.id === newItem.id);
   if (exisistingItem) {
@@ -23,6 +24,7 @@ const addToCart = (state, action) => {
 };
 
 const removeFromCart = (state, action) => {
+  state.totalQuantity--;
   const id = action.payload["id"];
   const exisistingItem = state.items.find((item) => item.id === id);
   if (exisistingItem.quantity === 1) {
