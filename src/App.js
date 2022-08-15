@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Cart from "./components/Cart/Cart";
 import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
-import { sendCartData } from "./store/cart-slice";
+import { fetchCartData, sendCartData } from "./store/cart-actions";
 
 let isInitial = true;
 function App() {
@@ -13,6 +13,7 @@ function App() {
   useEffect(() => {
     if (isInitial) {
       isInitial = false;
+      dispatch(fetchCartData());
       return;
     }
     dispatch(sendCartData(cart));

@@ -37,32 +37,16 @@ const removeFromCart = (state, action) => {
   }
 };
 
+const replaceCart = (state, action) => {
+  state.totalQuantity = action.payload.cartData.totalQuantity;
+  state.items = action.payload.cartData.items;
+};
+
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialCartState,
-  reducers: { addToCart, removeFromCart },
+  reducers: { replaceCart, addToCart, removeFromCart },
 });
-
-export const sendCartData = (cart) => {
-  return async (dispatch) => {
-    const sendRequest = async () => {
-      const response = await fetch(
-        "https://react-redux-async-980fd-default-rtdb.firebaseio.com/cart",
-        { method: "PUT", body: JSON.stringify(cart) }
-      );
-
-      if (!response.ok) {
-        throw new Error("Sending cart data failed.");
-      }
-    };
-
-    try {
-      await sendRequest();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
 
 export const cartActions = cartSlice.actions;
 export default cartSlice.reducer;
