@@ -38,8 +38,8 @@ const removeFromCart = (state, action) => {
 };
 
 const replaceCart = (state, action) => {
-  state.totalQuantity = action.payload.cartData.totalQuantity;
-  state.items = action.payload.cartData.items;
+  state.totalQuantity = action.payload.totalQuantity;
+  state.items = action.payload.items;
 };
 
 const cartSlice = createSlice({
