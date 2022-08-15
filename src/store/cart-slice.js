@@ -43,5 +43,26 @@ const cartSlice = createSlice({
   reducers: { addToCart, removeFromCart },
 });
 
+export const sendCartData = (cart) => {
+  return async (dispatch) => {
+    const sendRequest = async () => {
+      const response = await fetch(
+        "https://react-redux-async-980fd-default-rtdb.firebaseio.com/cart",
+        { method: "PUT", body: JSON.stringify(cart) }
+      );
+
+      if (!response.ok) {
+        throw new Error("Sending cart data failed.");
+      }
+    };
+
+    try {
+      await sendRequest();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const cartActions = cartSlice.actions;
 export default cartSlice.reducer;
